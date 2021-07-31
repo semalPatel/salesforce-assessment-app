@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.browse.mivi", appContext.packageName)
+        assertEquals("com.browse.com.example.mivi", appContext.packageName)
     }
 }
