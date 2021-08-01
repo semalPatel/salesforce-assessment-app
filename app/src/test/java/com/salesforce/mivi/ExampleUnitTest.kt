@@ -1,4 +1,4 @@
-package com.browse.mivi
+package com.salesforce.mivi
 
 import org.junit.Test
 

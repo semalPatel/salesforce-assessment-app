@@ -1,4 +1,4 @@
-package com.browse.mivi
+package com.salesforce.mivi
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
