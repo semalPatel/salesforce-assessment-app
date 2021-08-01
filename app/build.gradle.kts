@@ -1,9 +1,10 @@
-
 plugins {
     id("com.android.application")
     id("kotlin-parcelize")
-    kotlin("android")
+    id("org.jetbrains.kotlin.kapt")
+    id("dagger.hilt.android.plugin")
     kotlin("plugin.serialization") version Versions.kotlinVersion
+    kotlin("android")
 }
 
 android {
@@ -16,6 +17,7 @@ android {
         targetSdkVersion(AppConfig.TARGET_SDK_VERSION)
         versionCode(AppConfig.VERSION_CODE)
         versionName(AppConfig.VERSION_NAME)
+        buildConfigField("String", "API_KEY_VALUE", "\"7f7a4723\"")
     }
 
     buildTypes {
@@ -36,6 +38,8 @@ android {
 }
 
 dependencies {
+    implementation(Libs.kotlinXSerialization)
+    implementation(Libs.retrofitSerializationConverter)
     implementation(Libs.retrofit)
     implementation(Libs.kotlinStdLib)
     implementation(Libs.coroutinesCore)
@@ -44,6 +48,8 @@ dependencies {
     implementation(Libs.appCompat)
     implementation(Libs.material)
     implementation(Libs.constraintLayout)
+    implementation(Libs.hilt)
+    kapt(Libs.hiltCompiler)
     testImplementation(Libs.junit)
     androidTestImplementation(Libs.espresso)
 }
