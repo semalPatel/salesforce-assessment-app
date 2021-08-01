@@ -1,4 +1,4 @@
-package com.browse.mivi
+package com.salesforce.mivi
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
