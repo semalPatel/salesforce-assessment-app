@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.salesforce.mivi.Constants
 import com.salesforce.mivi.R
 import com.salesforce.mivi.data.DetailedMediaEntity
@@ -18,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class DetailedActivity : AppCompatActivity() {
 
-    private lateinit var activitySearchBinding: ActivityDetailsBinding
+    private lateinit var activityDetailsBinding: ActivityDetailsBinding
     private lateinit var contentId: String
 
     private val mediaEntityViewModel: DetailedContentViewModel by viewModels()
@@ -30,7 +31,7 @@ class DetailedActivity : AppCompatActivity() {
     }
 
     private fun setupBinding() {
-        activitySearchBinding = DataBindingUtil.setContentView(this, R.layout.activity_details)
+        activityDetailsBinding = DataBindingUtil.setContentView(this, R.layout.activity_details)
     }
 
     private fun handleIntent() {
@@ -51,17 +52,22 @@ class DetailedActivity : AppCompatActivity() {
                         updateUi(content.data)
                     }
                     is Result.Failure -> {
-
+                        Snackbar.make(
+                            this,
+                            activityDetailsBinding.root,
+                            "Unable to complete the request",
+                            Snackbar.LENGTH_LONG
+                        ).show()
                     }
                 }
             }
     }
 
     private fun updateUi(mediaEntity: DetailedMediaEntity) {
-        activitySearchBinding.collapsingLayout.title = mediaEntity.title
-        activitySearchBinding.detailedPlot.text = mediaEntity.plot
-        loadGlideImage(imageView = activitySearchBinding.collapsingImage, url = mediaEntity.posterUrl)
-        loadGlideImage(imageView = activitySearchBinding.mainPoster, url = mediaEntity.posterUrl)
+        activityDetailsBinding.collapsingLayout.title = mediaEntity.title
+        activityDetailsBinding.detailedPlot.text = mediaEntity.plot
+        loadGlideImage(imageView = activityDetailsBinding.collapsingImage, url = mediaEntity.posterUrl)
+        loadGlideImage(imageView = activityDetailsBinding.mainPoster, url = mediaEntity.posterUrl)
     }
 
     private fun loadGlideImage(imageView: ImageView, url: String) {

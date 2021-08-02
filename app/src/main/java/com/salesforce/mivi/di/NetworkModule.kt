@@ -33,8 +33,7 @@ class NetworkModule {
     @Provides
     @Singleton
     fun provideMovieService(
-        okHttpClient: OkHttpClient,
-        baseUrl: String
+        okHttpClient: OkHttpClient
     ) = createService(okHttpClient, provideBaseUrl(), ContentService::class.java)
 
     private fun createRetrofit(okHttpClient: OkHttpClient, baseUrl: String): Retrofit {
