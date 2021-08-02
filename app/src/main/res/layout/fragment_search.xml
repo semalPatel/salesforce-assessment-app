@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="model"
+            type="com.salesforce.mivi.viewmodel.SearchContentViewModel" />
+    </data>
+
+    <FrameLayout
+        android:id="@+id/layout_id"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        tools:context=".ui.NavigationActivity">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/content_list"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <EditText
+            android:id="@+id/search_content"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:inputType="text"
+            android:clickable="true"
+            android:focusable="true"
+            android:hint="@string/search_hint"
+            android:imeOptions="actionSearch"/>
+
+        <ProgressBar
+            android:id="@+id/content_loading"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            app:setVisibility="@{model.loadingState ? View.VISIBLE : View.GONE}" />
+
+    </FrameLayout>
+
+</layout>

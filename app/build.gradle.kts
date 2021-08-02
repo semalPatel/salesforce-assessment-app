@@ -1,21 +1,28 @@
-
 plugins {
     id("com.android.application")
     id("kotlin-parcelize")
-    kotlin("android")
+    id("org.jetbrains.kotlin.kapt")
+    id("dagger.hilt.android.plugin")
     kotlin("plugin.serialization") version Versions.kotlinVersion
+    kotlin("android")
 }
 
 android {
-    compileSdkVersion(AppConfig.COMPILE_SDK_VERSION)
-    buildToolsVersion(Versions.buildToolsVersion)
+    compileSdkPreview = AppConfig.COMPILE_SDK_VERSION
+    buildToolsVersion = Versions.buildToolsVersion
 
     defaultConfig {
-        applicationId(AppConfig.APPLICATION_ID)
-        minSdkVersion(AppConfig.MIN_SDK_VERSION)
-        targetSdkVersion(AppConfig.TARGET_SDK_VERSION)
-        versionCode(AppConfig.VERSION_CODE)
-        versionName(AppConfig.VERSION_NAME)
+        applicationId = AppConfig.APPLICATION_ID
+        minSdkPreview = AppConfig.MIN_SDK_VERSION
+        targetSdkPreview = AppConfig.TARGET_SDK_VERSION
+        versionCode = AppConfig.VERSION_CODE
+        versionName = AppConfig.VERSION_NAME
+        buildConfigField("String", "API_KEY_VALUE", "\"7f7a4723\"")
+    }
+
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
     }
 
     buildTypes {
@@ -36,14 +43,23 @@ android {
 }
 
 dependencies {
+    implementation(Libs.ktxAndroidExtensions)
+    implementation(Libs.kotlinXSerialization)
+    implementation(Libs.retrofitSerializationConverter)
+    implementation(Libs.activity)
     implementation(Libs.retrofit)
+    implementation(Libs.viewModel)
     implementation(Libs.kotlinStdLib)
     implementation(Libs.coroutinesCore)
     implementation(Libs.coroutinesAndroid)
-    implementation(Libs.coreKtx)
     implementation(Libs.appCompat)
     implementation(Libs.material)
+    implementation(Libs.glide)
     implementation(Libs.constraintLayout)
+    implementation(Libs.hilt)
+    implementation(Libs.fragmentNavigation)
+    implementation(Libs.navigationUi)
+    kapt(Libs.hiltCompiler)
     testImplementation(Libs.junit)
     androidTestImplementation(Libs.espresso)
 }
