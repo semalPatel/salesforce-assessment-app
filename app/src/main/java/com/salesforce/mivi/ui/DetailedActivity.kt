@@ -27,7 +27,6 @@ class DetailedActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setupBinding()
         handleIntent()
-        setupToolbar()
     }
 
     private fun setupBinding() {
@@ -41,11 +40,6 @@ class DetailedActivity : AppCompatActivity() {
             ?: SearchMediaEntity.getDefaultInstance().imdbId
         observeContent()
         mediaEntityViewModel.searchContentById(contentId)
-    }
-
-    private fun setupToolbar() {
-        setSupportActionBar(activitySearchBinding.toolbarTitle)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     private fun observeContent() {

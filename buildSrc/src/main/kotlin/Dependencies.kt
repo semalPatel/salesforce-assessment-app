@@ -18,12 +18,14 @@ object Versions {
     const val daggerHiltVersion = "2.38.1"
     const val junitVersion = "4.13.2"
     const val espressoVersion = "3.4.0"
+    const val navigationKtxVersion = "2.3.5"
+
 }
 
 object AppConfig {
     const val COMPILE_SDK_VERSION = "30"
     const val TARGET_SDK_VERSION = "30"
-    const val MIN_SDK_VERSION = "16"
+    const val MIN_SDK_VERSION = "26"
     const val APPLICATION_ID = "com.browse.mivi"
     const val VERSION_CODE = 1
     const val VERSION_NAME = "1.0"
@@ -42,6 +44,8 @@ object Libs {
     const val hilt = "com.google.dagger:hilt-android:${Versions.daggerHiltVersion}"
     const val hiltCompiler = "com.google.dagger:hilt-compiler:${Versions.daggerHiltVersion}"
     const val activity = "androidx.activity:activity-ktx:${Versions.activityVersion}"
+    const val fragmentNavigation = "androidx.navigation:navigation-fragment-ktx:${Versions.navigationKtxVersion}"
+    const val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navigationKtxVersion}"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayoutVersion}"
     const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutinesVersion}"
     const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutinesVersion}"

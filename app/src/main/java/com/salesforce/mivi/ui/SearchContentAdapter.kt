@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.salesforce.mivi.Constants
+import com.salesforce.mivi.R
 import com.salesforce.mivi.data.SearchMediaEntity
 import com.salesforce.mivi.databinding.ContentSearchResultBinding
 
@@ -29,7 +30,7 @@ class SearchContentAdapter(
 
     override fun getItemCount() = contentResult.size
 
-    override fun onClicked(position: Int) {
+    override fun onRootClicked(position: Int) {
         val intent = Intent(
             context,
             DetailedActivity::class.java
@@ -38,10 +39,36 @@ class SearchContentAdapter(
         }
         context.startActivity(intent)
     }
+
+    override fun onFavoriteClicked(position: Int) {
+        saveToPrefs(position)
+        notifyItemChanged(position)
+    }
+
+    private fun saveToPrefs(position: Int) {
+        val sharedPrefs = context.applicationContext.getSharedPreferences(
+            Constants.FAVORITES_KEY,
+            Context.MODE_PRIVATE
+        )
+        val id = contentResult[position].imdbId
+        val existingFavorites = sharedPrefs.getStringSet(Constants.FAVORITES_KEY, emptySet())
+        val newSet = existingFavorites?.let {
+            if (it.contains(id)) {
+                existingFavorites.minus(id)
+            } else {
+                existingFavorites.plus(id)
+            }
+        } ?: emptySet()
+        with(sharedPrefs.edit()) {
+            putStringSet(Constants.FAVORITES_KEY, newSet)
+            apply()
+        }
+    }
 }
 
 interface OnContentClickListener {
-    fun onClicked(position: Int)
+    fun onRootClicked(position: Int)
+    fun onFavoriteClicked(position: Int)
 }
 
 

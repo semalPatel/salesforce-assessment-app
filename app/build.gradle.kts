@@ -57,6 +57,8 @@ dependencies {
     implementation(Libs.glide)
     implementation(Libs.constraintLayout)
     implementation(Libs.hilt)
+    implementation(Libs.fragmentNavigation)
+    implementation(Libs.navigationUi)
     kapt(Libs.hiltCompiler)
     testImplementation(Libs.junit)
     androidTestImplementation(Libs.espresso)
