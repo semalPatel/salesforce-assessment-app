@@ -1,6 +1,6 @@
 object Versions {
     const val buildToolsVersion = "30.0.2"
-    const val androidGradleVersion = "4.2.2"
+    const val androidGradleVersion = "7.1.0-alpha05"
     const val kotlinVersion = "1.5.21"
     const val appCompatVersion = "1.3.1"
     const val coreKtxVersion = "1.6.0"
@@ -21,9 +21,9 @@ object Versions {
 }
 
 object AppConfig {
-    const val COMPILE_SDK_VERSION = 30
-    const val TARGET_SDK_VERSION = 30
-    const val MIN_SDK_VERSION = 16
+    const val COMPILE_SDK_VERSION = "30"
+    const val TARGET_SDK_VERSION = "30"
+    const val MIN_SDK_VERSION = "16"
     const val APPLICATION_ID = "com.browse.mivi"
     const val VERSION_CODE = 1
     const val VERSION_NAME = "1.0"

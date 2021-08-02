@@ -1,4 +1,4 @@
-package com.salesforce.mivi
+package com.salesforce.mivi.util
 
 import android.content.Context
 import android.util.TypedValue

@@ -17,6 +17,14 @@ data class MediaEntity(
         private const val YEAR = "Year"
         private const val TYPE = "Type"
         private const val POSTER = "Poster"
+
+        fun getDefaultInstance(): MediaEntity = MediaEntity(
+            imdbId = "tt0372784",
+            title = "Batman Begins",
+            year = "2005",
+            type = EntityType.MOVIE,
+            posterUrl = "https://m.media-amazon.com/images/M/MV5BOTY4YjI2N2MtYmFlMC00ZjcyLTg3YjEtMDQyM2ZjYzQ5YWFkXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg"
+        )
     }
 }
 

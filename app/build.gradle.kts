@@ -8,20 +8,21 @@ plugins {
 }
 
 android {
-    compileSdkVersion(AppConfig.COMPILE_SDK_VERSION)
-    buildToolsVersion(Versions.buildToolsVersion)
+    compileSdkPreview = AppConfig.COMPILE_SDK_VERSION
+    buildToolsVersion = Versions.buildToolsVersion
 
     defaultConfig {
-        applicationId(AppConfig.APPLICATION_ID)
-        minSdkVersion(AppConfig.MIN_SDK_VERSION)
-        targetSdkVersion(AppConfig.TARGET_SDK_VERSION)
-        versionCode(AppConfig.VERSION_CODE)
-        versionName(AppConfig.VERSION_NAME)
+        applicationId = AppConfig.APPLICATION_ID
+        minSdkPreview = AppConfig.MIN_SDK_VERSION
+        targetSdkPreview = AppConfig.TARGET_SDK_VERSION
+        versionCode = AppConfig.VERSION_CODE
+        versionName = AppConfig.VERSION_NAME
         buildConfigField("String", "API_KEY_VALUE", "\"7f7a4723\"")
     }
 
     buildFeatures {
         viewBinding = true
+        dataBinding = true
     }
 
     buildTypes {

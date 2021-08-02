@@ -1,8 +1,7 @@
 package com.salesforce.mivi.viewmodel
 
-import android.util.Log
 import com.salesforce.mivi.BuildConfig
-import com.salesforce.mivi.Result
+import com.salesforce.mivi.data.Result
 import com.salesforce.mivi.apiCall
 import com.salesforce.mivi.data.MediaEntity
 import com.salesforce.mivi.data.MediaEntityList

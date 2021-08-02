@@ -2,13 +2,17 @@ package com.salesforce.mivi.ui
 
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.salesforce.mivi.Util
 import com.salesforce.mivi.data.MediaEntity
 import com.salesforce.mivi.databinding.ContentSearchResultBinding
 
 class SearchContentViewHolder(
-    private val contentSearchResult: ContentSearchResultBinding
+    private val contentSearchResult: ContentSearchResultBinding,
+    private val onContentClickListener: OnContentClickListener
 ) : RecyclerView.ViewHolder(contentSearchResult.root) {
+
+    init {
+        contentSearchResult.root.setOnClickListener { onContentClickListener.onClicked(layoutPosition) }
+    }
 
     fun update(mediaEntity: MediaEntity) {
         contentSearchResult.title.text = mediaEntity.title

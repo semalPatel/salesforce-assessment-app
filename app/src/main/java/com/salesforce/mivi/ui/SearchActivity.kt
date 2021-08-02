@@ -1,12 +1,11 @@
-package com.salesforce.mivi
+package com.salesforce.mivi.ui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.salesforce.mivi.data.Result
 import com.salesforce.mivi.databinding.ActivitySearchBinding
-import com.salesforce.mivi.ui.SearchContentAdapter
 import com.salesforce.mivi.viewmodel.SearchContentViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -36,7 +35,10 @@ class SearchActivity : AppCompatActivity() {
             .observe(this) { result ->
                 when (result) {
                     is Result.Success -> {
-                        val adapter = SearchContentAdapter(result.data.mediaEntities)
+                        val adapter = SearchContentAdapter(
+                            context = this,
+                            contentResult = result.data.mediaEntities
+                        )
                         activitySearchBinding.contentList.adapter = adapter
                     }
                     is Result.Failure -> {
