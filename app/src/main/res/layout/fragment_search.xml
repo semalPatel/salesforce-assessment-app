@@ -23,15 +23,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <ProgressBar
-            android:id="@+id/content_loading"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:indeterminate="true"
-            app:setVisibility="@{model.loadingState ? View.VISIBLE : View.GONE}" />
-
         <EditText
             android:id="@+id/search_content"
             android:layout_width="match_parent"
@@ -41,6 +32,15 @@
             android:focusable="true"
             android:hint="@string/search_hint"
             android:imeOptions="actionSearch"/>
+
+        <ProgressBar
+            android:id="@+id/content_loading"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            app:setVisibility="@{model.loadingState ? View.VISIBLE : View.GONE}" />
 
     </FrameLayout>
 

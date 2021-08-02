@@ -8,5 +8,5 @@
         <item
             android:id="@+id/favorite_dest"
             android:icon="@drawable/ic_baseline_auto_awesome"
-            android:title="@string/search"/>
+            android:title="@string/favorites"/>
 </menu>

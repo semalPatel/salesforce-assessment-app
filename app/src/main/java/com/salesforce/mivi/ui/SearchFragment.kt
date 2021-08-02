@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.salesforce.mivi.R
 import com.salesforce.mivi.data.Result
 import com.salesforce.mivi.databinding.FragmentSearchBinding
+import com.salesforce.mivi.util.Util
 import com.salesforce.mivi.viewmodel.SearchContentViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -34,14 +35,16 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     private fun setupSearch() {
-        fragmentContentListBinding.searchContent.apply {
+        /*fragmentContentListBinding.searchContent.apply {
             isFocusable = true
             isClickable = true
             clearFocus()
-        }
+        }*/
         fragmentContentListBinding.searchContent.setOnEditorActionListener { v, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 mediaEntityViewModel.searchContent(v.text.toString())
+                mediaEntityViewModel.loadingState.set(true)
+                Util.hideKeyboard(requireContext(), v)
                 return@setOnEditorActionListener true
             }
             return@setOnEditorActionListener false
