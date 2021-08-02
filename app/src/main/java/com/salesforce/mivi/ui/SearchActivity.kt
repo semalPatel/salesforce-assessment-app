@@ -7,6 +7,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.salesforce.mivi.R
 import com.salesforce.mivi.data.Result
@@ -36,7 +37,15 @@ class SearchActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     private fun setupSearchRecyclerView() {
         val layoutManager = LinearLayoutManager(this)
-        activitySearchBinding.contentList.layoutManager = layoutManager
+        activitySearchBinding.contentList.apply {
+            this.layoutManager = layoutManager
+            addItemDecoration(
+                DividerItemDecoration(
+                    this@SearchActivity,
+                    DividerItemDecoration.VERTICAL
+                )
+            )
+        }
     }
 
     private fun setupToolbar() {

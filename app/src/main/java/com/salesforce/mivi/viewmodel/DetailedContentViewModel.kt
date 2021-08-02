@@ -3,7 +3,8 @@ package com.salesforce.mivi.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.salesforce.mivi.data.MediaEntity
+import com.salesforce.mivi.data.DetailedMediaEntity
+import com.salesforce.mivi.data.SearchMediaEntity
 import com.salesforce.mivi.data.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -14,7 +15,7 @@ class DetailedContentViewModel @Inject constructor(
     private val contentRepository: ContentRepository
 ) : ViewModel() {
 
-    val singleContentResult: MutableLiveData<Result<MediaEntity>> = MutableLiveData()
+    val singleContentResult: MutableLiveData<Result<DetailedMediaEntity>> = MutableLiveData()
     val uiState: MutableLiveData<UiState> = MutableLiveData()
 
     fun searchContentById(id: String) {

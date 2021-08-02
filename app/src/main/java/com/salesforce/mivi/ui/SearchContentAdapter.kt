@@ -6,12 +6,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.salesforce.mivi.Constants
-import com.salesforce.mivi.data.MediaEntity
+import com.salesforce.mivi.data.SearchMediaEntity
 import com.salesforce.mivi.databinding.ContentSearchResultBinding
 
 class SearchContentAdapter(
     private val context: Context,
-    private val contentResult: List<MediaEntity>,
+    private val contentResult: List<SearchMediaEntity>,
 ) : RecyclerView.Adapter<SearchContentViewHolder>(), OnContentClickListener {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchContentViewHolder {

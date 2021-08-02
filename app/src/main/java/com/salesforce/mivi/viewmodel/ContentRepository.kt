@@ -1,17 +1,17 @@
 package com.salesforce.mivi.viewmodel
 
 import com.salesforce.mivi.BuildConfig
+import com.salesforce.mivi.data.DetailedMediaEntity
 import com.salesforce.mivi.data.Result
-import com.salesforce.mivi.apiCall
-import com.salesforce.mivi.data.MediaEntity
-import com.salesforce.mivi.data.MediaEntityList
+import com.salesforce.mivi.data.SearchMediaEntityList
 import com.salesforce.mivi.network.ContentService
+import com.salesforce.mivi.util.apiCall
 import javax.inject.Inject
 
 class ContentRepository @Inject constructor(
     private val contentService: ContentService
 ) {
-    suspend fun getContentList(query: String): Result<MediaEntityList> {
+    suspend fun getContentList(query: String): Result<SearchMediaEntityList> {
         return apiCall {
             contentService.getContentBySearch(
                 apiKey = BuildConfig.API_KEY_VALUE,
@@ -20,7 +20,7 @@ class ContentRepository @Inject constructor(
         }
     }
 
-    suspend fun getContentById(id: String): Result<MediaEntity> {
+    suspend fun getContentById(id: String): Result<DetailedMediaEntity> {
         return apiCall {
             contentService.getContentById(
                 apiKey = BuildConfig.API_KEY_VALUE,

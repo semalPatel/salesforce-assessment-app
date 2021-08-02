@@ -2,7 +2,7 @@ package com.salesforce.mivi.ui
 
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.salesforce.mivi.data.MediaEntity
+import com.salesforce.mivi.data.SearchMediaEntity
 import com.salesforce.mivi.databinding.ContentSearchResultBinding
 
 class SearchContentViewHolder(
@@ -14,7 +14,7 @@ class SearchContentViewHolder(
         contentSearchResult.root.setOnClickListener { onContentClickListener.onClicked(layoutPosition) }
     }
 
-    fun update(mediaEntity: MediaEntity) {
+    fun update(mediaEntity: SearchMediaEntity) {
         contentSearchResult.title.text = mediaEntity.title
         contentSearchResult.typeAndYear.text = "${mediaEntity.type} (${mediaEntity.year})"
         /*val overrideDimens = Util.dpToPixel(

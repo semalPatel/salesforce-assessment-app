@@ -4,13 +4,12 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class MediaEntity(
+data class SearchMediaEntity(
     @SerialName(IMDB_ID) val imdbId: String,
     @SerialName(TITLE) val title: String,
     @SerialName(YEAR) val year: String,
     @SerialName(TYPE) val type: EntityType,
     @SerialName(POSTER) val posterUrl: String
-    //@SerialName(PLOT) val plot: String
 ) {
     companion object {
         private const val IMDB_ID = "imdbID"
@@ -20,7 +19,7 @@ data class MediaEntity(
         private const val POSTER = "Poster"
         private const val PLOT = "Plot"
 
-        fun getDefaultInstance() = MediaEntity(
+        fun getDefaultInstance() = SearchMediaEntity(
             imdbId = "tt0372784",
             title = "Batman Begins",
             year = "2005",
@@ -29,10 +28,11 @@ data class MediaEntity(
             //plot = "After training with his mentor, Batman begins his fight to free crime-ridden Gotham City from corruption."
         )
     }
-}
 
-@Serializable
-enum class EntityType {
-    @SerialName("movie") MOVIE,
-    @SerialName("series") SERIES
+    @Serializable
+    enum class EntityType {
+        @SerialName("movie") MOVIE,
+        @SerialName("series") SERIES,
+        @SerialName("episode") EPISODE
+    }
 }
