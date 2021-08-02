@@ -40,7 +40,7 @@ class DetailedActivity : AppCompatActivity() {
             ?.get(Constants.CONTENT_IMDB_ID) as? String
             ?: SearchMediaEntity.getDefaultInstance().imdbId
         observeContent()
-        mediaEntityViewModel.searchContentById("tt0372784")
+        mediaEntityViewModel.searchContentById(contentId)
     }
 
     private fun setupToolbar() {
@@ -64,7 +64,7 @@ class DetailedActivity : AppCompatActivity() {
     }
 
     private fun updateUi(mediaEntity: DetailedMediaEntity) {
-        activitySearchBinding.toolbarTitle.title = mediaEntity.title
+        activitySearchBinding.collapsingLayout.title = mediaEntity.title
         activitySearchBinding.detailedPlot.text = mediaEntity.plot
         loadGlideImage(imageView = activitySearchBinding.collapsingImage, url = mediaEntity.posterUrl)
         loadGlideImage(imageView = activitySearchBinding.mainPoster, url = mediaEntity.posterUrl)
