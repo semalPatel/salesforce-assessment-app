@@ -14,8 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mivi">
 
-        <activity android:name="com.salesforce.mivi.ui.SearchActivity"/>
-
         <activity android:name="com.salesforce.mivi.ui.DetailedActivity" />
 
         <activity android:name="com.salesforce.mivi.ui.NavigationActivity">

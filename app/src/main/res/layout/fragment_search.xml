@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:focusable="true"
-        tools:context=".ui.SearchActivity">
+        tools:context=".ui.NavigationActivity">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/content_list"

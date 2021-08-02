@@ -64,8 +64,9 @@ class FavoritesFragment : Fragment() {
         }
         val adapter = SearchContentAdapter(
             context = this.requireContext(),
-            contentResult = mediaEntityList
+            source = SearchContentAdapter.Source.FAVORITE
         )
+        adapter.addData(mediaEntityList)
         fragmentContentListBinding.contentList.adapter = adapter
 
     }

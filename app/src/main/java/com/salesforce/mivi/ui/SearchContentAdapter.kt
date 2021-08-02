@@ -13,8 +13,10 @@ import kotlinx.serialization.json.Json
 
 class SearchContentAdapter(
     private val context: Context,
-    private val contentResult: List<SearchMediaEntity>,
+    private val source: Source
 ) : RecyclerView.Adapter<SearchContentViewHolder>(), OnContentClickListener {
+
+    private val mediaEntityList = mutableListOf<SearchMediaEntity>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchContentViewHolder {
         return SearchContentViewHolder(
@@ -26,17 +28,17 @@ class SearchContentAdapter(
     }
 
     override fun onBindViewHolder(holder: SearchContentViewHolder, position: Int) {
-        holder.update(contentResult[position])
+        holder.update(mediaEntityList[position])
     }
 
-    override fun getItemCount() = contentResult.size
+    override fun getItemCount() = mediaEntityList.size
 
     override fun onRootClicked(position: Int) {
         val intent = Intent(
             context,
             DetailedActivity::class.java
         ).apply {
-            putExtra(Constants.CONTENT_IMDB_ID, contentResult[position].imdbId)
+            putExtra(Constants.CONTENT_IMDB_ID, mediaEntityList[position].imdbId)
         }
         context.startActivity(intent)
     }
@@ -46,16 +48,22 @@ class SearchContentAdapter(
         notifyItemChanged(position)
     }
 
+    fun addData(data: List<SearchMediaEntity>) {
+        mediaEntityList.clear()
+        mediaEntityList.addAll(data)
+        notifyItemRangeInserted(0, data.size)
+    }
+
     private fun saveToPrefs(position: Int) {
         val sharedPrefs = context.applicationContext.getSharedPreferences(
             Constants.FAVORITES_KEY,
             Context.MODE_PRIVATE
         )
-        val id = contentResult[position].imdbId
+        val id = mediaEntityList[position].imdbId
         val isFavorited = sharedPrefs.getString(id, null)
         if (isFavorited == null) {
             val jsonParser = Json { ignoreUnknownKeys = true }
-            val savedEntity = jsonParser.encodeToString(contentResult[position])
+            val savedEntity = jsonParser.encodeToString(mediaEntityList[position])
             with(sharedPrefs.edit()) {
                 putString(id, savedEntity)
                 apply()
@@ -65,7 +73,15 @@ class SearchContentAdapter(
                 remove(id)
                 apply()
             }
+            if (source == Source.FAVORITE) {
+                mediaEntityList.removeAt(position)
+                notifyItemRemoved(position)
+            }
         }
+    }
+
+    enum class Source {
+        SEARCH, FAVORITE
     }
 }
 

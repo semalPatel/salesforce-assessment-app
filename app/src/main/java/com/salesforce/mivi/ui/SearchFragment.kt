@@ -64,8 +64,9 @@ class SearchFragment : Fragment() {
                     is Result.Success -> {
                         val adapter = SearchContentAdapter(
                             context = this.requireContext(),
-                            contentResult = result.data.mediaEntities
+                            source = SearchContentAdapter.Source.SEARCH
                         )
+                        adapter.addData(result.data.mediaEntities)
                         fragmentContentListBinding.contentList.adapter = adapter
                     }
                     is Result.Failure -> {
