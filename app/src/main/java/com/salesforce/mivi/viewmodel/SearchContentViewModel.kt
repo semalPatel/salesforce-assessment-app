@@ -23,9 +23,7 @@ class SearchContentViewModel @Inject constructor(
     fun searchContent(query: String) {
         viewModelScope.launch {
             updateUiState(UiState.LOADING)
-            val result = repository.getContentList(query)
-            Log.d("ContentResult", result.toString())
-            when(result) {
+            when(val result = repository.getContentList(query)) {
                 is Result.Success -> {
                     updateUiState(UiState.SUCCESSFUL)
                     contentResult.postValue(result)

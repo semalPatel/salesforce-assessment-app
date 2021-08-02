@@ -34,7 +34,6 @@ class SearchActivity : AppCompatActivity() {
         mediaEntityViewModel
             .contentResult
             .observe(this) { result ->
-                Log.d(TAG, result.toString())
                 when (result) {
                     is Result.Success -> {
                         val adapter = SearchContentAdapter(result.data.mediaEntities)
