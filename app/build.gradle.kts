@@ -20,6 +20,10 @@ android {
         buildConfigField("String", "API_KEY_VALUE", "\"7f7a4723\"")
     }
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
@@ -38,9 +42,12 @@ android {
 }
 
 dependencies {
+    implementation(Libs.ktxAndroidExtensions)
     implementation(Libs.kotlinXSerialization)
     implementation(Libs.retrofitSerializationConverter)
+    implementation(Libs.activity)
     implementation(Libs.retrofit)
+    implementation(Libs.viewModel)
     implementation(Libs.kotlinStdLib)
     implementation(Libs.coroutinesCore)
     implementation(Libs.coroutinesAndroid)

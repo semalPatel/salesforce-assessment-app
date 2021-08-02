@@ -1,17 +1,21 @@
 package com.salesforce.mivi.network
 
 import com.salesforce.mivi.data.MediaEntity
+import com.salesforce.mivi.data.MediaEntityList
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface MovieService {
+interface ContentService {
 
     @GET(".")
-    suspend fun getMoviesBySearch(@Query(TITLE) searchTitle: String): Response<List<MediaEntity>>
+    suspend fun getContentBySearch(
+        @Query(API_KEY) apiKey: String,
+        @Query(TITLE) searchTitle: String
+    ): Response<MediaEntityList>
 
     @GET(".")
-    suspend fun getMovieById(
+    suspend fun getContentById(
         @Query(API_KEY) apiKey: String,
         @Query(ID) id: String
     ): Response<MediaEntity>

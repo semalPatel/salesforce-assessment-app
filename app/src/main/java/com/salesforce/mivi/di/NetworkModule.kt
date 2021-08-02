@@ -2,7 +2,7 @@ package com.salesforce.mivi.di
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.salesforce.mivi.network.AuthInterceptor
-import com.salesforce.mivi.network.MovieService
+import com.salesforce.mivi.network.ContentService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -35,7 +35,7 @@ class NetworkModule {
     fun provideMovieService(
         okHttpClient: OkHttpClient,
         baseUrl: String
-    ) = createService(okHttpClient, provideBaseUrl(), MovieService::class.java)
+    ) = createService(okHttpClient, provideBaseUrl(), ContentService::class.java)
 
     private fun createRetrofit(okHttpClient: OkHttpClient, baseUrl: String): Retrofit {
         val contentType = MediaType.get("application/json")

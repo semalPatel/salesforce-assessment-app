@@ -20,7 +20,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="108dp"/>
+        app:layout_constraintGuide_begin="116dp"/>
 
     <TextView
         android:id="@+id/title"
@@ -28,8 +28,10 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textSize="16sp"
+        android:layout_marginTop="8dp"
         app:layout_constraintStart_toEndOf="@id/divider"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="The Departed"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
