@@ -7,6 +7,7 @@ import com.salesforce.mivi.data.Result
 import com.salesforce.mivi.data.MediaEntityList
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.util.concurrent.atomic.AtomicBoolean
 import javax.inject.Inject
 
 @HiltViewModel
@@ -15,25 +16,23 @@ class SearchContentViewModel @Inject constructor(
 ) : ViewModel() {
 
     val contentResult: MutableLiveData<Result<MediaEntityList>> = MutableLiveData()
-    val uiState: MutableLiveData<UiState> = MutableLiveData()
+    var loadingState: Boolean = false
 
     fun searchContent(query: String) {
         viewModelScope.launch {
-            updateUiState(UiState.LOADING)
+            loadingState = true
             when (val result = contentRepository.getContentList(query)) {
                 is Result.Success -> {
-                    updateUiState(UiState.SUCCESSFUL)
+                    loadingState = false
                     contentResult.postValue(result)
                 }
                 is Result.Failure -> {
-                    updateUiState(UiState.FAILED)
+                    loadingState = false
                     contentResult.postValue(result)
                 }
             }
         }
     }
-
-    private fun updateUiState(newState: UiState) = uiState.postValue(newState)
 }
 
 enum class UiState {
