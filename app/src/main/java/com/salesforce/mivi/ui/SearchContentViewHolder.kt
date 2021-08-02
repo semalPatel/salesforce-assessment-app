@@ -40,13 +40,11 @@ class SearchContentViewHolder(
                 Constants.FAVORITES_KEY,
                 Context.MODE_PRIVATE
         )
-        val existingFavorites = sharedPrefs.getStringSet(Constants.FAVORITES_KEY, emptySet())
-        existingFavorites?.let {
-            if (it.contains(mediaEntity.imdbId)) {
-                contentSearchResult.favoriteBadge.setImageResource(R.drawable.ic_star_selected)
-            } else {
-                contentSearchResult.favoriteBadge.setImageResource(R.drawable.ic_star_unselected)
-            }
+        val existingFavorites = sharedPrefs.getString(mediaEntity.imdbId, null)
+        if (existingFavorites == null) {
+            contentSearchResult.favoriteBadge.setImageResource(R.drawable.ic_star_unselected)
+        } else {
+            contentSearchResult.favoriteBadge.setImageResource(R.drawable.ic_star_selected)
         }
     }
 }

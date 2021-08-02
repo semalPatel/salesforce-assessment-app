@@ -6,9 +6,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.salesforce.mivi.Constants
-import com.salesforce.mivi.R
 import com.salesforce.mivi.data.SearchMediaEntity
 import com.salesforce.mivi.databinding.ContentSearchResultBinding
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
 class SearchContentAdapter(
     private val context: Context,
@@ -51,17 +52,19 @@ class SearchContentAdapter(
             Context.MODE_PRIVATE
         )
         val id = contentResult[position].imdbId
-        val existingFavorites = sharedPrefs.getStringSet(Constants.FAVORITES_KEY, emptySet())
-        val newSet = existingFavorites?.let {
-            if (it.contains(id)) {
-                existingFavorites.minus(id)
-            } else {
-                existingFavorites.plus(id)
+        val isFavorited = sharedPrefs.getString(id, null)
+        if (isFavorited == null) {
+            val jsonParser = Json { ignoreUnknownKeys = true }
+            val savedEntity = jsonParser.encodeToString(contentResult[position])
+            with(sharedPrefs.edit()) {
+                putString(id, savedEntity)
+                apply()
             }
-        } ?: emptySet()
-        with(sharedPrefs.edit()) {
-            putStringSet(Constants.FAVORITES_KEY, newSet)
-            apply()
+        } else {
+            with(sharedPrefs.edit()) {
+                remove(id)
+                apply()
+            }
         }
     }
 }
